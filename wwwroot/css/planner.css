@@ -1,0 +1,38 @@
+﻿textarea.form-control {
+    width: 100%;
+}
+
+#planner {
+    margin-top: 20px;
+}
+
+#top-input {
+    display: flex;
+}
+
+#name-input {
+    flex-grow:1;
+}
+
+.task {
+    display: flex;
+    align-items: center;
+    border: 1px solid #eee;
+    margin: 6px 0;
+    border-radius: 4px;
+    padding:3px;
+}
+
+    .task:not(.done) .fa-check-circle { display: none; }
+    .task.done .fa-check-circle { display: block; }
+    .task.done .fa-circle { display:none; }
+
+    .task-name {
+        flex-grow: 1;
+        font-size: 16px;
+        padding: 0 6px;
+    }
+
+#bottom-input{
+    display: none;
+}

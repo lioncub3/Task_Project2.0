@@ -1,0 +1,106 @@
+﻿@model IEnumerable<TaskInfo>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@section Styles
+{
+    <link href="~/css/planner.css" rel="stylesheet" />
+}
+
+<div class="row">
+
+    <div class="col-md-6 col-md-offset-3">
+
+        <div id="planner">
+
+            <div id="planner-top">
+
+                <form asp-action="AddTask" method="post">
+
+                    <div id="top-input">
+
+                        <input id="name-input" class="form-control" type="text" name="name" placeholder="Введіть завдання" />
+                        <button id="addInfo" class="btn btn-info"><i class="fa fa-info"></i></button>
+                        <button type="submit" class="btn btn-success"> <i class="fa fa-plus"></i> Додати </button>
+
+                    </div>
+
+                    <div id="bottom-input">
+                        <input type="date" name="date" class="form-control"/>
+                        <textarea class="form-control" name="description" rows="3" placeholder="Опис завдання"></textarea>
+                    </div>
+
+                </form>
+
+            </div>
+
+            <div id="planner-body">
+
+                @foreach (TaskInfo task in Model)
+                {
+                    <partial name="_TaskElement" model="@task" />
+                }
+
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+
+
+</div>
+
+@section Scripts
+{
+    <script>
+
+        $("#addInfo").on('click', function (e) {
+            e.preventDefault();
+
+            if ($(this).hasClass("opened")) {
+                $("#bottom-input").hide(500);
+                $(this).removeClass("opened");
+            }
+            else {
+                $("#bottom-input").show(500);
+                $(this).addClass("opened");
+            }
+        });
+
+        $('.delete-task').click(function (e) {
+            e.preventDefault();
+
+            var url = this.href;
+            $(this).parent().remove();
+
+            $.ajax(url,{ });
+        });
+
+        $(".task-name").on('click', function () {
+
+            var taskID = $(this).data("id");
+
+            var taskEl = $(this).parent();
+
+            var isDone = taskEl.hasClass("done");
+
+            if (isDone)
+                taskEl.removeClass("done");
+            else
+                taskEl.addClass("done");
+
+            $.ajax("/Planner/Check",
+                {
+                    data: { id: taskID, command : !isDone? "done" : "not-done" }
+                });
+
+        });
+
+    </script>
+}
+
