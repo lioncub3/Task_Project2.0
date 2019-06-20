@@ -33,7 +33,7 @@ namespace PlannerApp
             });
 
             services.AddDbContext<TasksContext>(
-                options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
+                options => options.UseMySql(Configuration.GetConnectionString("DefaultConnection"))
             );
 
 

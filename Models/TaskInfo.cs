@@ -8,6 +8,7 @@ namespace PlannerApp.Models
 {
     public class TaskInfo
     {
+        [Key]
         public int Id { get; set; }
 
         [Required]

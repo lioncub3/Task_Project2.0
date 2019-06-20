@@ -7,6 +7,8 @@
         <i class="fa fa-circle fa-2x"></i>
     </div>
     <div class="task-name" data-id="@Model.Id">@Model.Name</div>
+    <div id="task-date" class="hidden">@Model.Date</div>
+    <div id="task-description" class="hidden">@Model.Description</div>
+    <a id="task-info" class="btn btn-info" data-toggle="modal" href="#task-modal"><i class="fa fa-info"></i></a>
     <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger delete-task"> <i class="fa fa-trash"></i> </a>
-
 </div>
