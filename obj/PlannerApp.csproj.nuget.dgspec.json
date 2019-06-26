@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\s28-vp\\Desktop\\PlannerApp\\PlannerApp.csproj": {}
+    "C:\\Users\\s28-vp\\Desktop\\Tasks\\PlannerApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\s28-vp\\Desktop\\PlannerApp\\PlannerApp.csproj": {
+    "C:\\Users\\s28-vp\\Desktop\\Tasks\\PlannerApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\s28-vp\\Desktop\\PlannerApp\\PlannerApp.csproj",
+        "projectUniqueName": "C:\\Users\\s28-vp\\Desktop\\Tasks\\PlannerApp.csproj",
         "projectName": "PlannerApp",
-        "projectPath": "C:\\Users\\s28-vp\\Desktop\\PlannerApp\\PlannerApp.csproj",
+        "projectPath": "C:\\Users\\s28-vp\\Desktop\\Tasks\\PlannerApp.csproj",
         "packagesPath": "C:\\Users\\s28-vp\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\s28-vp\\Desktop\\PlannerApp\\obj\\",
+        "outputPath": "C:\\Users\\s28-vp\\Desktop\\Tasks\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
@@ -75,6 +75,10 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[2.1.9, )"
+            },
+            "Pomelo.EntityFrameworkCore.MySql": {
+              "target": "Package",
+              "version": "[2.1.4, )"
             }
           },
           "imports": [

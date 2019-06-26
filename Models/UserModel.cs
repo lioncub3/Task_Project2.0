@@ -6,18 +6,15 @@ using System.Threading.Tasks;
 
 namespace PlannerApp.Models
 {
-    public class TaskInfo
+    public class UserModel
     {
-        [Key]
-        public int Id { get; set; }
-
         [Required]
         public string Name { get; set; }
 
         [Required]
-        public bool Done { get; set; }
-        public string Description { get; set; }
-        public DateTime? Date { get; set; }
-        public string UserId { get; set; }
+        public string Email { get; set; }
+
+        [Required]
+        public string Password { get; set; }
     }
 }

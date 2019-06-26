@@ -2,7 +2,7 @@
 
 namespace PlannerApp.Migrations
 {
-    public partial class AddPrimariKey : Migration
+    public partial class addUser : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

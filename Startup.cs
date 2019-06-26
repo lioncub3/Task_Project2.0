@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -33,9 +34,27 @@ namespace PlannerApp
             });
 
             services.AddDbContext<TasksContext>(
-                options => options.UseMySql(Configuration.GetConnectionString("DefaultConnection"))
+                options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
             );
 
+            services.ConfigureApplicationCookie(
+                opts => opts.LoginPath = "/Home/Login"
+            );
+
+            services.AddIdentity<IdentityUser, IdentityRole>(
+                        opts => {
+                            opts.Password.RequireDigit = false;
+                            opts.Password.RequireNonAlphanumeric = false;
+                            opts.Password.RequireLowercase = false;
+                            opts.Password.RequireUppercase = false;
+                            opts.Password.RequiredLength = 4;
+
+                            opts.User.RequireUniqueEmail = true;
+                            opts.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+                        }
+                    )
+                    .AddEntityFrameworkStores<TasksContext>()
+                    .AddDefaultTokenProviders();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
@@ -54,6 +73,8 @@ namespace PlannerApp
 
             app.UseStaticFiles();
             app.UseCookiePolicy();
+
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {

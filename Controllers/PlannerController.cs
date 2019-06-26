@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PlannerApp.Data;
@@ -9,27 +11,32 @@ using PlannerApp.Models;
 
 namespace PlannerApp.Controllers
 {
+    [Authorize]
     public class PlannerController : Controller
     {
-
+        private UserManager<IdentityUser> userManager;
         private TasksContext db;
 
-        public PlannerController(TasksContext context)
+        public PlannerController(TasksContext context, UserManager<IdentityUser> userManager)
         {
             this.db = context;
+            this.userManager = userManager;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            
-            return View(db.TaskInfos);
+            IdentityUser user = await userManager.GetUserAsync(User);
+
+            return View(db.TaskInfos.Where(t => t.UserId == user.Id));
         }
 
         [HttpPost]
-        public IActionResult AddTask(TaskInfo task)
+        public async Task<IActionResult> AddTask(TaskInfo task)
         {
             if (ModelState.IsValid)
             {
+                var user = await userManager.GetUserAsync(User);
+                task.UserId = user.Id;
                 db.TaskInfos.Add(task);
                 db.SaveChanges();
 

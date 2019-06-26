@@ -61,12 +61,12 @@
 
             <div class="modal-header">
                 <h4 class="modal-title">Інформація завдання</h4>
-                <button type="button" class="close" data-dismiss="modal">×</button>
+                <button type="button" class="close" data-dismiss="modal">х</button>
             </div>
 
             <div class="modal-body">
-                <div id="modal-task-date"></div>
-                <div id="modal-task-description"></div>
+                <div><strong>Time</strong> <span id="modal-task-date"></span></div>
+                <div><strong>Description</strong> <span id="modal-task-description"></span></div>
             </div>
 
             <div class="modal-footer">
@@ -123,11 +123,9 @@
 
         });
 
-        $("#task-info").click(function () {
-            var date = $('task-date').text();
-            var description = $('task-description').text();
-
-            console.log(date);
+        $(".task-info").click(function () {
+            var date = $(this).siblings('.task-date').text();
+            var description = $(this).siblings('.task-description').text();
 
             $('#modal-task-date').text(date);
             $('#modal-task-description').text(description);

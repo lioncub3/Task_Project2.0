@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using PlannerApp.Models;
 using System;
 using System.Collections.Generic;
@@ -7,10 +9,8 @@ using System.Threading.Tasks;
 
 namespace PlannerApp.Data
 {
-    public class TasksContext: DbContext
+    public class TasksContext: IdentityDbContext<IdentityUser>
     {
-       
-
         public DbSet<TaskInfo> TaskInfos { get; set; }
 
         public TasksContext(DbContextOptions options): base(options)
